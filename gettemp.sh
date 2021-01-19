@@ -1,6 +1,8 @@
 #!/bin/bash
 # Read MCP9808 temp register value
-tempRegVal=$(i2cget -y 1 0x18 0x05 w)
+tempRegVal=$(/usr/sbin/i2cget -y 1 0x18 0x05 w)
+
+echo $tempRegVal >> /dev/shm/pizero/script.log
 
 ### Mask temp value bits (MSB bits 0-3, LSB bits 4-7 for whole numbers, LSB bit 0-3 fractional values)
 ### LSB bits 8-15, MSB bits 0-7
@@ -39,7 +41,6 @@ frSum=$(echo - | awk 'BEGIN {print "'"$tb11"'" + "'"$tb10"'" + "'"$tb9"'" + "'"$
 ### Add whole & fractioanl values together
 tempC=$(echo - | awk 'BEGIN {print "'"$tempCWhole"'" + "'"$frSum"'" }')
 echo $tempC
-
 #### Convert to F
 #tempF=$(echo - | awk 'BEGIN {print "'"$tempC"'" * 1.8 + 32 }')
 ##echo $tempF
