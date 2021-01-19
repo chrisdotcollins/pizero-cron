@@ -33,9 +33,10 @@
 ['2021-01-19T23:20:01',18.4375],
 ['2021-01-19T23:25:01',18.625],
 ['2021-01-19T23:30:01',18.625],
+['2021-01-19T23:35:02',18.5],
 		]);
         var options = {
-          title : 'PiZero Temp Log 2021-01-19T23:30:01',
+          title : 'PiZero Temp Log 2021-01-19T23:35:02',
           vAxis: {title: 'Degrees',minValue:7,viewWindow:{ min: 7 }},
           hAxis: {title: 'Timestamp'},
           seriesType: 'bars',
@@ -84,7 +85,7 @@
         var timestamp = parseFloat(data[0]) * 1000;  // expects ms
         var value = parseFloat(data[1]);
         readings.append(timestamp, value);
-        document.getElementById("demo").innerHTML = value;
+        document.getElementById("temperature").innerHTML = value;
       };
 
     var myVar = setInterval(myTimer, 1000);
